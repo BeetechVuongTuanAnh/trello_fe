@@ -90,7 +90,7 @@ export default function Sidebar(props) {
                     <div className="d-flex justify-content-between">
                         <div className="logo">
                             <span onClick={_onClickIconHomePage} className="cursor-pointer">
-                                <h1>TrelloV2</h1>
+                                <h1>SkyLine</h1>
                             </span>
                         </div>
                     </div>
