@@ -80,8 +80,8 @@ export default function TaskCreateScreen() {
             (response) => {
                 if (response.status === Common.HTTP_STATUS.OK) {
                     setProjectList(response.data.projects);
-                    _onDetail(response.data.projects[0]._id);
-                    _getParentTask(response.data.projects[0]._id);
+                    _onDetail(response.data.projects[0]?._id);
+                    _getParentTask(response.data.projects[0]?._id);
                 }
                 else {
                     setMessage(response.data.message || 'Lấy danh dự án thất bại. Vui lòng thử lại !');
@@ -159,7 +159,7 @@ export default function TaskCreateScreen() {
             data.append('parent_task', getValues('parent_task'));
         }
 
-        data.append('project', getValues('project') ? getValues('project') : projectList[0]._id);
+        data.append('project', getValues('project') ? getValues('project') : projectList[0]?._id);
         data.append('task_start_date', getValues('task_start_date'));
         data.append('task_end_date', getValues('task_end_date'));
         data.append('category', getValues('category') ? getValues('category') : taskCategoryList[0]);
@@ -169,8 +169,8 @@ export default function TaskCreateScreen() {
         data.append('priority', getValues('priority') ? getValues('priority') : TypeCode.TASK.PRIORITY.LOW);
         data.append('estimate_time', getValues('estimate_time'));
         data.append('actual_time', getValues('actual_time'));
-        data.append('assign', getValues('assign') ? getValues('assign') : taskMemberList[0]._id);
-        data.append('user_create', userData._id);
+        data.append('assign', getValues('assign') ? getValues('assign') : taskMemberList[0]?._id);
+        data.append('user_create', userData?._id);
 
         taskApi.create(data).then(
             (response) => {
@@ -236,7 +236,7 @@ export default function TaskCreateScreen() {
                                                             <select className="choices form-select"
                                                                 {...register("project")}>
                                                                 {projectList.length > 0 && projectList.map((item, idx) => (
-                                                                    <option key={idx} value={item._id}>{item.project_name}</option>
+                                                                    <option key={idx} value={item?._id}>{item?.project_name}</option>
                                                                 ))}
                                                             </select>
                                                         </div>
@@ -368,7 +368,7 @@ export default function TaskCreateScreen() {
                                                                     <select className="choices form-select"
                                                                         {...register("assign")}>
                                                                         {taskMemberList.length > 0 && taskMemberList.map((item, idx) => (
-                                                                            <option key={idx} value={item._id}>{item.fullname}</option>
+                                                                            <option key={idx} value={item?._id}>{item?.fullname}</option>
                                                                         ))}
                                                                     </select>
                                                                 </div>
@@ -387,7 +387,7 @@ export default function TaskCreateScreen() {
                                                                         <option value="">Không có</option>
                                                                         {
                                                                             taskParentList.length > 0 && taskParentList.map((item, idx) => (
-                                                                                <option key={idx} value={item._id}>{item.title}</option>
+                                                                                <option key={idx} value={item?._id}>{item?.title}</option>
                                                                             ))}
                                                                     </select>
                                                                 </div>

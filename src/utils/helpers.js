@@ -161,5 +161,5 @@ export function filterProjectIdList(projectList, userId) {
 
 
 export function filterTaskList(taskList, projectIdList) {
-    return taskList.filter((item) => projectIdList.includes(item.project._id));
+    return taskList.filter((item) => projectIdList.includes(item?.project?._id));
 }
